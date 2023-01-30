@@ -5,6 +5,7 @@ use App\Contact;
 use App\Mobile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Contactcontroller;
+use App\Http\Controllers\mobilecontroller;
 use App\Http\Requests\ContactStoreRequest;
 use Session;
 
@@ -183,16 +184,16 @@ class Contactcontroller extends Controller
         //     'number' => 'required',
         //     'name' =>'required'
         // ]);
-
        
+        
 
         $var=Contact::where('id',$id)->with("mobiles")->first();
-
+      
         
         $var->mobiles[0]['number']=$request->number1;
         $var->mobiles[1]['number']=$request->number2;
         $var->mobiles[2]['number']=$request->number3;
-
+        
 
         $var->name=$request->name;
         $var->address=$request->address;

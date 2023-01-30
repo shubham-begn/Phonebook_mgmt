@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mobile;
 use Illuminate\Http\Request;
+use App\Http\Resources\Mobiles_resource;
 
 class mobilecontroller extends Controller
 {
@@ -13,7 +14,7 @@ class mobilecontroller extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -43,9 +44,12 @@ class mobilecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $var=Mobile::onlyTrashed()->first();
+        return Mobiles_resource::collection($var);
+
+       
     }
 
     /**

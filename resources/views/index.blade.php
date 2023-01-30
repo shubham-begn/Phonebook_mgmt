@@ -1,7 +1,7 @@
 
 
 <a href="{{route('Contact.create')}}">Create New Contact </a>
-
+<a href="{{route('Mobile.show')}}">Deleted List </a>
 
 <hr>
 <table>
