@@ -53,14 +53,15 @@ input[type=submit]:hover {
 </style>
     
 
-{{-- @if($errors->has()) --}}
+
    @foreach ($errors->all() as $error)
       <div>{{ $error }}</div>
   @endforeach
-{{-- @endif --}}
-<form action ="{{route('Contact.store')}}" method="post">
+
+
+<form action ="{{route('Contact.update',$var->id)}}" method="post">
     {{csrf_field()}}
-    
+    {{method_field('PATCH')}}
     <input type="text" name="name" value="{{$var->name}}">
     <input type="text" name="address" value="{{$var->address}}">
     <input type="text" name="email" value="{{$var->email}}">

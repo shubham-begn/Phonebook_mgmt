@@ -160,6 +160,10 @@ class Contactcontroller extends Controller
     public function edit($id)
     {
        // $var=Contact::find($id);
+
+
+
+
         $var=Contact::where('id',$id)->with("mobiles")->first();
         
         return view('edit',compact('var'));
@@ -174,13 +178,22 @@ class Contactcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $var=Contact::find($id);
+        // $var=Contact::find($id);
         // $this->validate($request,[
         //     'number' => 'required',
         //     'name' =>'required'
         // ]);
 
+       
+
+        $var=Contact::where('id',$id)->with("mobiles")->first();
+
         
+        $var->mobiles[0]['number']=$request->number1;
+        $var->mobiles[1]['number']=$request->number2;
+        $var->mobiles[2]['number']=$request->number3;
+
+
         $var->name=$request->name;
         $var->address=$request->address;
         $var->email=$request->email;
@@ -189,6 +202,9 @@ class Contactcontroller extends Controller
         $var->company=$request->company;
         $var->dob=$request->dob;
         $var->save();
+
+        
+       // dd($var->mobiles[0]['number']);
 
         session::flash('sucess','Updated Sucessfully');
         return redirect()->route('Contact.index');
